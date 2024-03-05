@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="12"/>
+    <PathDelim Value="\"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+        <MainUnitHasScaledStatement Value="False"/>
+      </Flags>
+      <SessionStorage Value="InProjectDir"/>
+      <Title Value="chatterbot"/>
+      <UseAppBundle Value="False"/>
+      <ResourceType Value="res"/>
+    </General>
+    <BuildModes>
+      <Item Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+    <RunParams>
+      <FormatVersion Value="2"/>
+    </RunParams>
+    <Units>
+      <Unit>
+        <Filename Value="chatterbot.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="archivo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Archivo"/>
+      </Unit>
+      <Unit>
+        <Filename Value="arbol.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Arbol"/>
+      </Unit>
+      <Unit>
+        <Filename Value="funciones.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="initvalorantdata.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="initValorantData"/>
+      </Unit>
+      <Unit>
+        <Filename Value="arboldebusquedas.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ArbolDeBusquedas"/>
+      </Unit>
+      <Unit>
+        <Filename Value="busquedaderespuestas.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="BusquedaDeRespuestas"/>
+      </Unit>
+      <Unit>
+        <Filename Value="lista.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Lista_Conductores"/>
+      </Unit>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="chatterbot"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Linking>
+      <Debugging>
+        <DebugInfoType Value="dsDwarf2Set"/>
+      </Debugging>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions>
+      <Item>
+        <Name Value="EAbort"/>
+      </Item>
+      <Item>
+        <Name Value="ECodetoolError"/>
+      </Item>
+      <Item>
+        <Name Value="EFOpenError"/>
+      </Item>
+    </Exceptions>
+  </Debugging>
+</CONFIG>
