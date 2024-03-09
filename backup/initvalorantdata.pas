@@ -39,10 +39,6 @@ const
 
   desc_mapa = 'El mapa {mapaName} esta localizado en {mapaLoc}. Fue lanzado {mapaLanc}. {mapaDesc}';
 
-  queesValorant = 'Valorant es un juego de disparos en primera persona táctico en el que dos equipos de\ncinco jugadores se enfrentan entre sí en una serie de rondas.\nEl objetivo del juego es plantar o desactivar una bomba, o eliminar a todos los miembros\ndel equipo contrario.\nEn cada ronda, los jugadores comienzan con una cantidad limitada de dinero que puedenusar para comprar armas, habilidades y otros elementos.\n\nLas armas se clasifican en cuatro categorías: pistolas, subfusiles, rifles, y rifles\nde francotirador. Cada categoría tiene sus propias ventajas y desventajas.\n\nLos jugadores también tienen acceso a una variedad de habilidades especiales que pueden\nusar para ayudar a su equipo a ganar. Estas habilidades se dividen en dos categorías:\nhabilidades activas y habilidades pasivas. Las habilidades activas se pueden usar en\ncualquier momento, mientras que las habilidades pasivas siempre están activas.\n\nEl juego se divide en dos mitades, cada una de las cuales tiene 12 rondas. El equipo que\ngane 13 rondas gana el partido.';
-
-  comojugarValorant = '***Cómo jugar Valorant***\n\n**Fase de compra**\nAntes de cada ronda, los jugadores tienen la oportunidad de comprar armas, habilidades y\notros elementos. El dinero que se puede gastar en cada ronda depende de los resultados de\nla ronda anterior.\n\n**Fase de despliegue**\nDespués de la fase de compra, los jugadores pueden desplegarse en el mapa. El equipo\natacante debe plantar la bomba, mientras que el equipo defensor debe desactivarla.\n\n**Fase de combate**\nLa fase de combate es el momento en que los jugadores luchan entre sí. El objetivo es\neliminar a todos los miembros del equipo contrario.';
-
 type
   habilidades_record = RECORD
     idAgente:integer;

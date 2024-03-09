@@ -95,6 +95,7 @@ type
   procedure EscribirRespuestasEnArchivo(var archivoRespuestas:TArchivo);
   function LeerRespuestas(var archivoRespuestas:TArchivo; pos:Integer):TRespuesta;
   function TamArchivo(var archivoRespuestas:TArchivo):Integer;
+  procedure initArrays;
 
 var
 { Init variables }
@@ -115,67 +116,168 @@ const
   comojugarValorant = 'Antes de cada ronda, los jugadores tienen la oportunidad de comprar armas, otros elementos. El equipo atacante debe plantar la bomba, mientras que el equipo defensor debe desactivarla.';
 var
   respuesta: TRespuesta;
+  pos,i: Integer;
 begin
   Assign(archivoRespuestas, ruta);
   Rewrite(archivoRespuestas);
 
+  initArrays();
+
   // Escribir las respuestas en el archivo
-  respuesta.key := 'OTROS';
-  respuesta.pregunta := 'HOLA,BUENAS,BUENAS TARDES,BUENOS DIAS,BUENAS NOCHES,OLA';
-  respuesta.respuesta := 'Hola! En que puedo ayudarte?';
-  Seek(archivoRespuestas, 0);
-  Write(archivoRespuestas, respuesta);
+  // Escribir las respuestas en el archivo
+   respuesta.key := 'OTROS';
+   respuesta.pregunta := 'HOLA,BUENAS,BUENAS TARDES,BUENOS DIAS,BUENAS NOCHES,OLA';
+   respuesta.respuesta := 'Hola! En que puedo ayudarte?';
+   Seek(archivoRespuestas, 0);
+   Write(archivoRespuestas, respuesta);
 
-  respuesta.key := 'COMO';
-  respuesta.pregunta := 'ESTAS,VA,TE ENCUENTRAS,ANDAS,ANDA';
-  respuesta.respuesta := 'Estoy bien, gracias por preguntar!';
-  Seek(archivoRespuestas, 1);
-  Write(archivoRespuestas, respuesta);
+   respuesta.key := 'COMO';
+   respuesta.pregunta := 'ESTAS,VA,TE ENCUENTRAS,ANDAS,ANDA';
+   respuesta.respuesta := 'Estoy bien, gracias por preguntar!';
+   Seek(archivoRespuestas, 1);
+   Write(archivoRespuestas, respuesta);
 
-  respuesta.key := 'OTROS';
-  respuesta.pregunta := 'ADIOS,CHAU,HASTA LUEGO,NOS VEMOS';
-  respuesta.respuesta := 'Hasta luego! Que tengas un buen dia.';
-  Seek(archivoRespuestas, 2);
-  Write(archivoRespuestas, respuesta);
+   respuesta.key := 'OTROS';
+   respuesta.pregunta := 'ADIOS,CHAU,HASTA LUEGO,NOS VEMOS';
+   respuesta.respuesta := 'Hasta luego! Que tengas un buen dia.';
+   Seek(archivoRespuestas, 2);
+   Write(archivoRespuestas, respuesta);
 
-  respuesta.key := 'QUE';
-  respuesta.pregunta := 'VALORANT';
-  respuesta.respuesta := queesValorant;
-  Seek(archivoRespuestas, 3);
-  Write(archivoRespuestas, respuesta);
+   respuesta.key := 'QUE';
+   respuesta.pregunta := 'VALORANT';
+   respuesta.respuesta := queesValorant;
+   Seek(archivoRespuestas, 3);
+   Write(archivoRespuestas, respuesta);
 
-  respuesta.key := 'COMO';
-  respuesta.pregunta := 'JUGAR,JUEGA,VALORANT';
-  respuesta.respuesta := comojugarValorant;
-  Seek(archivoRespuestas, 4);
-  Write(archivoRespuestas, respuesta);
+   respuesta.key := 'COMO';
+   respuesta.pregunta := 'JUGAR,JUEGA,VALORANT';
+   respuesta.respuesta := comojugarValorant;
+   Seek(archivoRespuestas, 4);
+   Write(archivoRespuestas, respuesta);
 
-  respuesta.key := 'CUANTOS';
-  respuesta.pregunta := 'MAPAS,MAPA';
-  respuesta.respuesta := 'Hay ' + IntToStr(q_maps) + ' mapas en Valorant.';
-  Seek(archivoRespuestas, 5);
-  Write(archivoRespuestas, respuesta);
+   respuesta.key := 'CUANTOS';
+   respuesta.pregunta := 'MAPAS,MAPA';
+   respuesta.respuesta := 'Hay ' + IntToStr(q_maps) + ' mapas en Valorant.';
+   Seek(archivoRespuestas, 5);
+   Write(archivoRespuestas, respuesta);
 
-  respuesta.key := 'CUANTOS';
-  respuesta.pregunta := 'PERONAJES,PERSONAJE,AGENTES,AGENTE';
-  respuesta.respuesta := 'Hay ' + IntToStr(q_agentes) + ' agentes en Valorant.';
-  Seek(archivoRespuestas, 6);
-  Write(archivoRespuestas, respuesta);
+   respuesta.key := 'CUANTOS';
+   respuesta.pregunta := 'PERONAJES,PERSONAJE,AGENTES,AGENTE';
+   respuesta.respuesta := 'Hay ' + IntToStr(q_agentes) + ' agentes en Valorant.';
+   Seek(archivoRespuestas, 6);
+   Write(archivoRespuestas, respuesta);
 
-  respuesta.key := 'OTROS';
-  respuesta.pregunta := 'PERFECTO,GRACIAS,MUCHAS GRACIAS,MUCHISIMAS GRACIAS,GENIAL';
-  respuesta.respuesta := 'Me alegra haberte podido ayudar!';
-  Seek(archivoRespuestas, 7);
-  Write(archivoRespuestas, respuesta);
+   respuesta.key := 'OTROS';
+   respuesta.pregunta := 'PERFECTO,GRACIAS,MUCHAS GRACIAS,MUCHISIMAS GRACIAS,GENIAL';
+   respuesta.respuesta := 'Me alegra haberte podido ayudar!';
+   Seek(archivoRespuestas, 7);
+   Write(archivoRespuestas, respuesta);
 
-  respuesta.key := 'QUIEN';
-  respuesta.pregunta := 'SOS,ERES';
-  respuesta.respuesta := 'Me presento, soy '+ +' estoy aqui para resolver cualquier duda que tengas sobre valorant!';
-  Seek(archivoRespuestas, 7);
-  Write(archivoRespuestas, respuesta);
+   respuesta.key := 'QUIEN';
+   respuesta.pregunta := 'SOS,ERES';
+   respuesta.respuesta := 'Me presento, soy '+ botName +' estoy aqui para resolver cualquier duda que tengas sobre valorant!';
+   Seek(archivoRespuestas, 8);
+   Write(archivoRespuestas, respuesta);
+
+
+   respuesta.key := 'QUE';
+   respuesta.pregunta := 'ARMAS HAY,ARMAS TIENE';
+   respuesta.respuesta := 'Lista de armas: Pistolas, Subfusiles, Fusiles de Asalto, Fusiles de Fracotirador, Escopetas';
+   Seek(archivoRespuestas, 9);
+   Write(archivoRespuestas, respuesta);
+
+   respuesta.key := 'QUE';
+   respuesta.pregunta := 'AGENTES HAY,PERSONAJES TIENE,PERONAJES HAY,AGENTES TIENE';
+   respuesta.respuesta := 'Lista de agentes: Breach, Brimstone, Cypher, Jett, Killjoy, Omen, Phoenix, Raze, Reyna, Sage, Skye, Sova, Viper';
+   Seek(archivoRespuestas, 10);
+   Write(archivoRespuestas, respuesta);
+
+   respuesta.key := 'QUE';
+   respuesta.pregunta := 'CLASES HAY,CLASES TIENE';
+   respuesta.respuesta := 'Lista de clases: Duelistas, Controladores, Iniciadores, Centinelas';
+   Seek(archivoRespuestas, 11);
+   Write(archivoRespuestas, respuesta);
+
+   respuesta.key := 'QUE';
+   respuesta.pregunta := 'MAPAS HAY,MAPAS TIENE,MAPAS SON';
+   respuesta.respuesta := 'Lista de mapas: Haven, Icebox, Bind, Breeze, Ascent, Fracture';
+   Seek(archivoRespuestas, 12);
+   Write(archivoRespuestas, respuesta);
+
+   pos:=12;
+   for i:= 1 to q_agentes do
+   begin
+     inc(pos);
+     respuesta.key := 'QUE';
+     respuesta.pregunta := UpCase(agentes[i].name);
+     respuesta.respuesta := agentes[i].description;
+     Seek(archivoRespuestas, pos);
+     Write(archivoRespuestas, respuesta);
+
+     inc(pos);
+     respuesta.key := 'DESCRIPCION';
+     respuesta.pregunta := UpCase(agentes[i].name);
+     respuesta.respuesta := agentes[i].description;
+     Seek(archivoRespuestas, pos);
+     Write(archivoRespuestas, respuesta);
+
+     inc(pos);
+     respuesta.key := 'QUE';
+     respuesta.pregunta := 'LUGAR VIENE '+UpCase(agentes[i].name)+',LUGAR PROVIENE '+UpCase(agentes[i].name)+',LOCALIDAD ES '+UpCase(agentes[i].name)+',LOCALIDAD PERTENECE '+UpCase(agentes[i].name);
+     respuesta.respuesta := 'Falta completar campos de agentes.nacionalidad.';
+     Seek(archivoRespuestas, pos);
+     Write(archivoRespuestas, respuesta);
+
+     inc(pos);
+     respuesta.key := 'HABILIDAD';
+     respuesta.pregunta := UpCase(agentes[i].name);
+     respuesta.respuesta := agentes[i].name +' cuenta con: ' +habilidades[i].habilidad1_name +habilidades[i].habilidad2_name +habilidades[i].habilidad3_name +habilidades[i].habilidad4_name;
+     Seek(archivoRespuestas, pos);
+     Write(archivoRespuestas, respuesta);
+
+     inc(pos);
+     respuesta.key := 'CLASE';
+     respuesta.pregunta := UpCase(agentes[i].name);
+     respuesta.respuesta := agentes[i].name +' es de la clase: ' +agentes[i].clase;
+     Seek(archivoRespuestas, pos);
+     Write(archivoRespuestas, respuesta);
+
+     inc(pos);
+     respuesta.key := 'COMO';
+     respuesta.pregunta := UpCase(agentes[i].name);
+     respuesta.respuesta := agentes[i].name + ' esta ' + agentes[i].disponibilidad;
+     Seek(archivoRespuestas, pos);
+     Write(archivoRespuestas, respuesta);
+   end;
+
+   for i:= 1 to q_maps do
+   begin
+     inc(pos);
+     respuesta.key := 'COMO';
+     respuesta.pregunta := UpCase(mapas[i].name);
+     respuesta.respuesta := mapas[i].description;
+     Seek(archivoRespuestas, pos);
+     Write(archivoRespuestas, respuesta);
+
+     inc(pos);
+     respuesta.key := 'QUE';
+     respuesta.pregunta := UpCase(mapas[i].name);
+     respuesta.respuesta := mapas[i].description;
+     Seek(archivoRespuestas, pos);
+     Write(archivoRespuestas, respuesta);
+
+     inc(pos);
+     respuesta.key := 'DESCRIPCION';
+     respuesta.pregunta := UpCase(mapas[i].name);
+     respuesta.respuesta := mapas[i].description;
+     Seek(archivoRespuestas, pos);
+     Write(archivoRespuestas, respuesta);
+   end;
 
   // Cerrar el archivo
   Close(archivoRespuestas);
+
+  Writeln('Tam: ', TamArchivo(archivoRespuestas));
 end;
 
 function LeerRespuestas(var archivoRespuestas:TArchivo; pos:Integer):TRespuesta;
@@ -209,118 +311,116 @@ if agentes[i].name == buscado then
   habilidades[agentes[i].id].habilidad2 }
 
 { Astra }
-  {
-agentes[0].id := 0;
-agentes[0].name := 'Astra';
-agentes[0].description :='Astra controla las energías del cosmos para dar forma al campo de batalla a su antojo. Con pleno dominio de su forma astral y un gran talento para la anticipación estratégica, siempre va eones por delante de los movimientos de sus enemigos.';
-agentes[0].clase := 'Controlador';
-agentes[0].disponibilidad := 'bloqueada de inicio (puede conseguirse mediante su contrato o pagando 1000 puntos Valorant).';
-agentes[0].habilidades := 0;
-habilidades[0].idAgente:= 0;
-habilidades[0].agente :='Astra';
-habilidades[0].habilidad1_name:= 'Pulso nova';
-habilidades[0].habilidad1_description := 'coloca estrellas en Forma astral (X). Activa una estrella para detonar un Pulso nova. El Pulso nova se carga brevemente y explota, lo que aturde a todos los jugadores en la zona.';
-habilidades[0].habilidad1_price := '12 segundos de reutilización.';
-habilidades[0].habilidad2_name := 'Nebulosa';
-habilidades[0].habilidad2_description := 'coloca estrellas en Forma astral (X). Activa una estrella para transformarla en una Nebulosa (humo). Usa (F) en una estrella para disiparla, lo que recupera la estrella para poder volver a colocarla tras un tiempo. Disipar una estrella crea una breve Nebulosa falsa en su ubicación antes de recuperarla.';
-habilidades[0].habilidad2_price := '15 segundos de reutilización';
-habilidades[0].habilidad3_name := 'Pozo gravitatorio';
-habilidades[0].habilidad3_description := 'coloca estrellas en Forma astral (X). Activa una estrella para crear un Pozo gravitatorio. Atrae hacia el centro a todos los jugadores en la zona antes de que explote, lo que causa que todos los jugadores atrapados en el interior se vuelvan frágiles.';
-habilidades[0].habilidad3_price := '12 segundos de reutilización.';
-habilidades[0].habilidad4_name := 'Forma astral / Separación cósmica';
-habilidades[0].habilidad4_description := 'activa (X) para entrar en Forma astral y poder colocar estrellas. Las estrellas se pueden reactivar más tarde para transformarlas en un Pulso nova, una Nebulosa o un Pozo gravitatorio. Cuando Separación cósmica está cargada, dispara en Forma astral para empezar a apuntar y, a continuación, usa el disparo para elegir dos ubicaciones. Se creará una Separación cósmica infinita que conecte los dos puntos. Separación cósmica bloquea las balas y atenúa en gran medida los sonidos.';
-habilidades[0].habilidad4_price :='150 créditos (forma astral) / 7 puntos de definitiva.';
+
+agentes[1].id := 0;
+agentes[1].name := 'Astra';
+agentes[1].description :='Astra controla las energías del cosmos para dar forma al campo de batalla a su antojo. Con pleno dominio de su forma astral y un gran talento para la anticipación estratégica, siempre va eones por delante de los movimientos de sus enemigos.';
+agentes[1].clase := 'Controlador';
+agentes[1].disponibilidad := 'bloqueada de inicio (puede conseguirse mediante su contrato o pagando 1000 puntos Valorant).';
+//agentes[1].habilidades := 0;
+habilidades[1].idAgente:= 0;
+habilidades[1].agente :='Astra';
+habilidades[1].habilidad1_name:= 'Pulso nova';
+habilidades[1].habilidad1_description := 'coloca estrellas en Forma astral (X). Activa una estrella para detonar un Pulso nova. El Pulso nova se carga brevemente y explota, lo que aturde a todos los jugadores en la zona.';
+habilidades[1].habilidad1_price := '12 segundos de reutilización.';
+habilidades[1].habilidad2_name := 'Nebulosa';
+habilidades[1].habilidad2_description := 'coloca estrellas en Forma astral (X). Activa una estrella para transformarla en una Nebulosa (humo). Usa (F) en una estrella para disiparla, lo que recupera la estrella para poder volver a colocarla tras un tiempo. Disipar una estrella crea una breve Nebulosa falsa en su ubicación antes de recuperarla.';
+habilidades[1].habilidad2_price := '15 segundos de reutilización';
+habilidades[1].habilidad3_name := 'Pozo gravitatorio';
+habilidades[1].habilidad3_description := 'coloca estrellas en Forma astral (X). Activa una estrella para crear un Pozo gravitatorio. Atrae hacia el centro a todos los jugadores en la zona antes de que explote, lo que causa que todos los jugadores atrapados en el interior se vuelvan frágiles.';
+habilidades[1].habilidad3_price := '12 segundos de reutilización.';
+habilidades[1].habilidad4_name := 'Forma astral / Separación cósmica';
+habilidades[1].habilidad4_description := 'activa (X) para entrar en Forma astral y poder colocar estrellas. Las estrellas se pueden reactivar más tarde para transformarlas en un Pulso nova, una Nebulosa o un Pozo gravitatorio. Cuando Separación cósmica está cargada, dispara en Forma astral para empezar a apuntar y, a continuación, usa el disparo para elegir dos ubicaciones. Se creará una Separación cósmica infinita que conecte los dos puntos. Separación cósmica bloquea las balas y atenúa en gran medida los sonidos.';
+habilidades[1].habilidad4_price :='150 créditos (forma astral) / 7 puntos de definitiva.';
 
 
 { Breach }
-{
-agentes[1].id = 1;
-agentes[1].name = 'Breach';
-agentes[1].description = 'Breach es un iniciador sueco que utiliza sus habilidades para abrir brechas en el campo de batalla y crear oportunidades para su equipo. Sus habilidades le permiten aturdir a los enemigos, cegarlos y causarles daño, lo que lo convierte en un agente muy versátil.';
-agentes[1].clase = 'Iniciador';
-agentes[1].disponibilidad = 'bloqueada de inicio (puede conseguirse mediante su contrato o pagando 1000 puntos Valorant).';
-agentes[1].habilidades = 1;
-habilidades[1].idAgente = 1;
-habilidades[1].agente = 'Breach';
-habilidades[1].habilidad1_name = 'Explosión cegadora';
-habilidades[1].habilidad1_description = 'Equipa una carga explosiva cegadora. Dispara para liberar una rápida explosión que atraviesa paredes. La carga ciega a todos los jugadores que la estén mirando.';
-habilidades[1].habilidad1_price = '250 créditos';
-habilidades[1].habilidad2_name = 'Falla';
-habilidades[1].habilidad2_description = 'Equipa una bomba sísmica. Dispara para liberar un seísmo que aturde a todos los enemigos dentro de la zona de efecto.';
-habilidades[1].habilidad2_price = 'gratuita';
-habilidades[1].habilidad3_name = 'Réplica';
-habilidades[1].habilidad3_description = 'Equipa una carga explosiva de fusión. Dispara para que se extienda por el terreno y explote, infligiendo gran daño a cualquiera que esté dentro de su zona de efecto.';
-habilidades[1].habilidad3_price = '200 créditos';
-habilidades[1].habilidad4_name = 'Fragor imparable';
-habilidades[1].habilidad4_description = 'Equipa una carga explosiva sísmica. Dispara para crear un seísmo que se extiende por una gran zona en forma de cono. Este seísmo aturde y lanza por los aires a los enemigos.';
-habilidades[1].habilidad4_price = '7 puntos de definitiva';
+
+agentes[2].id := 1;
+agentes[2].name := 'Breach';
+agentes[2].description := 'Breach es un iniciador sueco que utiliza sus habilidades para abrir brechas en el campo de batalla y crear oportunidades para su equipo. Sus habilidades le permiten aturdir a los enemigos, cegarlos y causarles daño, lo que lo convierte en un agente muy versátil.';
+agentes[2].clase := 'Iniciador';
+agentes[2].disponibilidad := 'bloqueada de inicio (puede conseguirse mediante su contrato o pagando 1000 puntos Valorant).';
+//agentes[2].habilidades := 1;
+habilidades[2].idAgente := 1;
+habilidades[2].agente := 'Breach';
+habilidades[2].habilidad1_name := 'Explosión cegadora';
+habilidades[2].habilidad1_description := 'Equipa una carga explosiva cegadora. Dispara para liberar una rápida explosión que atraviesa paredes. La carga ciega a todos los jugadores que la estén mirando.';
+habilidades[2].habilidad1_price := '250 créditos';
+habilidades[2].habilidad2_name := 'Falla';
+habilidades[2].habilidad2_description := 'Equipa una bomba sísmica. Dispara para liberar un seísmo que aturde a todos los enemigos dentro de la zona de efecto.';
+habilidades[2].habilidad2_price := 'gratuita';
+habilidades[2].habilidad3_name := 'Réplica';
+habilidades[2].habilidad3_description := 'Equipa una carga explosiva de fusión. Dispara para que se extienda por el terreno y explote, infligiendo gran daño a cualquiera que esté dentro de su zona de efecto.';
+habilidades[2].habilidad3_price := '200 créditos';
+habilidades[2].habilidad4_name := 'Fragor imparable';
+habilidades[2].habilidad4_description := 'Equipa una carga explosiva sísmica. Dispara para crear un seísmo que se extiende por una gran zona en forma de cono. Este seísmo aturde y lanza por los aires a los enemigos.';
+habilidades[2].habilidad4_price := '7 puntos de definitiva';
 
 { Brimstone }
-agentes[2].id = 2;
-agentes[2].name = 'Brimstone';
-agentes[2].description = 'Brimstone es un comandante militar estadounidense que utiliza su arsenal orbital para dar apoyo a su equipo. Sus habilidades le permiten crear zonas de control, bloquear la visión y proporcionar a su equipo un impulso de ataque.';
-agentes[2].clase = 'Controlador';
-agentes[2].disponibilidad = 'desbloqueado desde el inicio';
-agentes[2].habilidades = 2;
-habilidades[2].idAgente = 2;
-habilidades[2].agente = 'Brimstone';
-habilidades[2].habilidad1_name = 'Incendiario';
-habilidades[2].habilidad1_description = 'Equipa un lanzagranadas incendiarias. Dispara una granada que explota en cuanto toca el suelo, creando una zona de fuego persistente que daña a los jugadores que estén en su interior.';
-habilidades[2].habilidad1_price = '250 créditos';
-habilidades[2].habilidad2_name = 'Cortina de humo';
-habilidades[2].habilidad2_description = 'Equipa un mapa táctico de la zona. Marca una ubicación del mapa y luego confirma el disparo para que caiga en dicho lugar una nube de humo de larga duración que bloquea la visión de los jugadores que estén en su interior. También es útil para impedir que los jugadores te vean si la colocas estratégicamente en huecos de puertas o pasillos estrechos.';
-habilidades[2].habilidad2_price = '100 créditos';
-habilidades[2].habilidad3_name = 'Baliza estimulante';
-habilidades[2].habilidad3_description = 'Equipa una baliza estimulante que puedes lanzar hacia el frente. Al tocar el suelo la baliza se despliega creando un área o campo que otorga disparo rápido a todos los jugadores que estén en su interior.';
-habilidades[2].habilidad3_price = '100 créditos';
-habilidades[2].habilidad4_name = 'Golpe orbital';
-habilidades[2].habilidad4_description = 'Equipa un mapa táctico de la zona y gracias a este puedes señalar una ubicación para disparar un potente golpe orbital de láser. Provoca un gran daño prolongado a los enemigos que se encuentren en la zona afectada.';
-habilidades[2].habilidad4_price = '6 puntos de definitiva';
+agentes[3].id := 2;
+agentes[3].name := 'Brimstone';
+agentes[3].description := 'Brimstone es un comandante militar estadounidense que utiliza su arsenal orbital para dar apoyo a su equipo. Sus habilidades le permiten crear zonas de control, bloquear la visión y proporcionar a su equipo un impulso de ataque.';
+agentes[3].clase := 'Controlador';
+agentes[3].disponibilidad := 'desbloqueado desde el inicio';
+//agentes[3].habilidades := 2;
+habilidades[3].idAgente := 2;
+habilidades[3].agente := 'Brimstone';
+habilidades[3].habilidad1_name := 'Incendiario';
+habilidades[3].habilidad1_description := 'Equipa un lanzagranadas incendiarias. Dispara una granada que explota en cuanto toca el suelo, creando una zona de fuego persistente que daña a los jugadores que estén en su interior.';
+habilidades[3].habilidad1_price := '250 créditos';
+habilidades[3].habilidad2_name := 'Cortina de humo';
+habilidades[3].habilidad2_description := 'Equipa un mapa táctico de la zona. Marca una ubicación del mapa y luego confirma el disparo para que caiga en dicho lugar una nube de humo de larga duración que bloquea la visión de los jugadores que estén en su interior. También es útil para impedir que los jugadores te vean si la colocas estratégicamente en huecos de puertas o pasillos estrechos.';
+habilidades[3].habilidad2_price := '100 créditos';
+habilidades[3].habilidad3_name := 'Baliza estimulante';
+habilidades[3].habilidad3_description := 'Equipa una baliza estimulante que puedes lanzar hacia el frente. Al tocar el suelo la baliza se despliega creando un área o campo que otorga disparo rápido a todos los jugadores que estén en su interior.';
+habilidades[3].habilidad3_price := '100 créditos';
+habilidades[3].habilidad4_name := 'Golpe orbital';
+habilidades[3].habilidad4_description := 'Equipa un mapa táctico de la zona y gracias a este puedes señalar una ubicación para disparar un potente golpe orbital de láser. Provoca un gran daño prolongado a los enemigos que se encuentren en la zona afectada.';
+habilidades[3].habilidad4_price := '6 puntos de definitiva';
 
 { Chamber }
-agentes[3].id = 3;
-agentes[3].name = 'Chamber';
-agentes[3].description = 'Chamber es un diseñador de armas siempre bien vestido y bien pertrechado que expulsa a los agresores con precisión letal. Aprovecha su arsenal personalizado para repeler, eliminar enemigos a distancia y crear la contingencia perfecta para cada plan.';
-agentes[3].clase = 'Centinela';
-agentes[3].disponibilidad = 'bloqueado de inicio (puede conseguirse mediante su contrato o pagando 1000 puntos Valorant).';
-agentes[3].habilidades = 3;
-habilidades[3].idAgente = 3;
-habilidades[3].agente = 'Chamber';
-habilidades[3].habilidad1_name = 'Cazador de cabezas';
-habilidades[3].habilidad1_description = 'actívala para equipar una pistola pesada. Utiliza el botón de modo de disparo alternativo para apuntar con la mira.';
-habilidades[3].habilidad1_price = '100 créditos';
-habilidades[3].habilidad2_name = 'Rendez-Vous';
-habilidades[3].habilidad2_description = 'coloca dos anclajes de teleportación. Mientras estén en el suelo y al alcance, reactiva la habilidad para teleportarte rápidamente al otro anclaje. Los anclajes se pueden recoger para volver a colocarlos.';
-habilidades[3].habilidad2_price = 'gratuita, 15 segundos de reutilización';
-habilidades[3].habilidad3_name = 'Marca registrada';
-habilidades[3].habilidad3_description = 'coloca una trampa que rastrea a enemigos. Cuando un enemigo visible entra en el alcance, la trampa inicia una cuenta atrás y, a continuación, desestabiliza el terreno a su alrededor, lo que crea un campo persistente que ralentiza a los jugadores que se encuentren en su interior.';
-habilidades[3].habilidad3_price = '150 créditos';
-habilidades[3].habilidad4_name = 'Tour de force';
-habilidades[3].habilidad4_description = 'actívala para sacar un poderoso rifle de francotirador personalizado que mata a los enemigos con cualquier impacto directo. Matar a un enemigo genera un campo persistente que ralentiza a los jugadores que se encuentren en su interior.';
-habilidades[3].habilidad4_price = '7 puntos de definitiva';
 
-{ Cypher }
-agentes[4].id = 4;
-agentes[4].name = 'Cypher';
-agentes[4].description = 'Cypher, como buen centinela, es capaz de adelantarse a los movimientos de los enemigos y cubrir posiciones. Sus habilidades están destinadas a la defensa, así que te recomendamos que lo uses si lo tuyo no es estar al pie del cañón y en el frente de línea. Más bien hay que usarlo creando estrategias con nuestros compañeros y acompañarlos en la batalla dándoles apoyo. Es un personaje que puede funcionar genial cuando se juega en el bando de los defensores y hay que mantener a salvo una zona de la SPIKE';
-agentes[4].clase = 'Centinela';
-agentes[4].disponibilidad = 'bloqueado de inicio (puede conseguirse mediante su contrato o pagando 1000 puntos Valorant).';
-agentes[4].habilidades = 4;
-habilidades[4].idAgente = 4;
-habilidades[4].agente = 'Cypher';
-habilidades[4].habilidad1_name = 'Prisión cibernética';
-habilidades[4].habilidad1_description = 'lanzas de inmediato una prisión cibernética. Esta prisión puede activarse a distancia, apuntando sobre ella, y al hacerlo se creará una zona que bloquea la visión de los enemigos si quieren atravesarla';
-habilidades[4].habilidad1_price = '100 créditos';
-habilidades[4].habilidad2_name = 'Cámara espía';
-habilidades[4].habilidad2_description = 'te equipas con una cámara espía que puedes disparar para fijar en una ubicación. Una vez hecho eso puedes controlar la visión de la cámara (dejando expuesto a Cypher, así que cuidado) para ver lo mismo que ella ve, e incluso puedes disparar un dardo marcador que revelará la posición del enemigo al que alcance.';
-habilidades[4].habilidad2_price = 'gratuita';
-habilidades[4].habilidad3_name = 'Cable trampa';
-habilidades[4].habilidad3_description = 'te equipas con un cable trampa, destructible pero oculto. Puedes dispararlo hacia una pared y este se extenderá hacia la pared del lado opuesto, y también puedes recogerlo para moverlo hacia otra posición. Los jugadores enemigos que atraviesen el cable se quedarán anclados y su posición se revelará, si no logran dispararle a tiempo para librarse acabarán finalmente aturdidos.';
-habilidades[4].habilidad3_price = '200 créditos';
-habilidades[4].habilidad4_name = 'Hurto neuronal';
-habilidades[4].habilidad4_description = 'puedes apuntar sobre un enemigo muerto con tu mira y usar esta habilidad al instante para revelar la posición de todos los enemigos vivos restantes. Especialmente útil cuando solo quedan unos pocos oponentes o no sabes dónde se esconden.';
-habilidades[4].habilidad4_price = '7 puntos de definitiva';
+agentes[4].id := 3;
+agentes[4].name := 'Chamber';
+agentes[4].description := 'Chamber es un diseñador de armas siempre bien vestido y bien pertrechado que expulsa a los agresores con precisión letal. Aprovecha su arsenal personalizado para repeler, eliminar enemigos a distancia y crear la contingencia perfecta para cada plan.';
+agentes[4].clase := 'Centinela';
+agentes[4].disponibilidad := 'bloqueado de inicio (puede conseguirse mediante su contrato o pagando 1000 puntos Valorant).';
+//agentes[4].habilidades := 3;
+habilidades[4].idAgente := 3;
+habilidades[4].agente := 'Chamber';
+habilidades[4].habilidad1_name := 'Cazador de cabezas';
+habilidades[4].habilidad1_description := 'actívala para equipar una pistola pesada. Utiliza el botón de modo de disparo alternativo para apuntar con la mira.';
+habilidades[4].habilidad1_price := '100 créditos';
+habilidades[4].habilidad2_name := 'Rendez-Vous';
+habilidades[4].habilidad2_description := 'coloca dos anclajes de teleportación. Mientras estén en el suelo y al alcance, reactiva la habilidad para teleportarte rápidamente al otro anclaje. Los anclajes se pueden recoger para volver a colocarlos.';
+habilidades[4].habilidad2_price := 'gratuita, 15 segundos de reutilización';
+habilidades[4].habilidad3_name := 'Marca registrada';
+habilidades[4].habilidad3_description := 'coloca una trampa que rastrea a enemigos. Cuando un enemigo visible entra en el alcance, la trampa inicia una cuenta atrás y, a continuación, desestabiliza el terreno a su alrededor, lo que crea un campo persistente que ralentiza a los jugadores que se encuentren en su interior.';
+habilidades[4].habilidad3_price := '150 créditos';
+habilidades[4].habilidad4_name := 'Tour de force';
+habilidades[4].habilidad4_description := 'actívala para sacar un poderoso rifle de francotirador personalizado que mata a los enemigos con cualquier impacto directo. Matar a un enemigo genera un campo persistente que ralentiza a los jugadores que se encuentren en su interior.';
+habilidades[4].habilidad4_price := '7 puntos de definitiva';
 
+{Cypher}
+
+agentes[5].id := 4;
+agentes[5].name := 'Cypher';
+agentes[5].description := 'Cypher, como buen centinela, es capaz de adelantarse a los movimientos de los enemigos y cubrir posiciones. Sus habilidades están destinadas a la defensa, así que te recomendamos que lo uses si lo tuyo no es estar al pie del cañón y en el frente de línea. Más bien hay que usarlo creando estrategias con nuestros compañeros y acompañarlos en la batalla dándoles apoyo. Es un personaje que puede funcionar genial cuando se juega en el bando de los defensores y hay que mantener a salvo una zona de la SPIKE';
+agentes[5].clase := 'Centinela';
+agentes[5].disponibilidad := 'bloqueado de inicio (puede conseguirse mediante su contrato o pagando 1000 puntos Valorant).';
+//agentes[5].habilidades := 4;
+habilidades[5].idAgente := 4;
+habilidades[5].agente := 'Cypher';
+habilidades[5].habilidad1_name := 'Prisión cibernética';
+habilidades[5].habilidad1_description := 'lanzas de inmediato una prisión cibernética. Esta prisión puede activarse a distancia, apuntando sobre ella, y al hacerlo se creará una zona que bloquea la visión de los enemigos si quieren atravesarla';
+habilidades[5].habilidad1_price := '100 créditos';
+habilidades[5].habilidad2_name := 'Cámara espía';
+habilidades[5].habilidad2_description := 'te equipas con una cámara espía que puedes disparar para fijar en una ubicación. Una vez hecho eso puedes controlar la visión de la cámara (dejando expuesto a Cypher, así que cuidado) para ver lo mismo que ella ve, e incluso puedes disparar un dardo marcador que revelará la posición del enemigo al que alcance.';
+habilidades[5].habilidad2_price := 'gratuita';
+habilidades[5].habilidad3_name := 'Cable trampa';
+habilidades[5].habilidad4_name := 'Habilidad 4 {Completar}';
+{
 { Fade }
 agentes[5].id = 5;
 agentes[5].name = 'Fade';
@@ -689,40 +789,39 @@ habilidades[20].habilidad4_price = '7 puntos de definitiva';
 mapas[1].name := 'Haven';
 mapas[1].localizacion := 'La isla de Venecia, Italia';
 mapas[1].fecha_lanzamiento := '2 de junio de 2020';
-mapas[1].description := 'Haven es un mapa grande y abierto con tres sitios de bomba. Su diseño permite varias rutas de ataque y defensa, así como oportunidades para flanquear al enemigo. Los tres sitios de bomba ofrecen diferentes desafíos estratégicos, y los jugadores deben adaptarse rápidamente a los cambios en el flujo del juego. Las áreas abiertas proporcionan espacio para el combate a larga distancia, mientras que los pasillos estrechos y las esquinas ofrecen oportunidades para el combate cuerpo a cuerpo. Haven es un mapa dinámico que fomenta la comunicación y la coordinación entre los miembros del equipo.'
+mapas[1].description := 'Haven es un mapa grande y abierto con tres sitios de bomba. Su diseño permite varias rutas de ataque y defensa, así como oportunidades para flanquear al enemigo. Los tres sitios de bomba ofrecen diferentes desafíos estratégicos, y los jugadores deben adaptarse rápidamente a los cambios en el flujo del juego. Las áreas abiertas proporcionan espacio para el combate a larga distancia, mientras que los pasillos estrechos y las esquinas ofrecen oportunidades para el combate cuerpo a cuerpo. Haven es un mapa dinámico que fomenta la comunicación y la coordinación entre los miembros del equipo.';
 
 { Icebox }
-{
+
 mapas[2].name := 'Icebox';
 mapas[2].localizacion := 'El Ártico';
 mapas[2].fecha_lanzamiento := '13 de octubre de 2020';
-mapas[2].description := 'Icebox es un mapa ambientado en una instalación de investigación en el Ártico. Su diseño único presenta múltiples niveles y pasajes estrechos, lo que lo convierte en un desafío tanto para atacantes como para defensores. El terreno irregular y las áreas elevadas ofrecen oportunidades para el combate a larga distancia, mientras que los pasillos estrechos y las zonas interiores son propicias para el combate cuerpo a cuerpo. Icebox fomenta la creatividad y el trabajo en equipo, ya que los jugadores deben adaptarse a un entorno cambiante y aprovechar al máximo sus habilidades y recursos.'
+mapas[2].description := 'Icebox es un mapa ambientado en una instalación de investigación en el Ártico. Su diseño único presenta múltiples niveles y pasajes estrechos, lo que lo convierte en un desafío tanto para atacantes como para defensores. El terreno irregular y las áreas elevadas ofrecen oportunidades para el combate a larga distancia, mientras que los pasillos estrechos y las zonas interiores son propicias para el combate cuerpo a cuerpo. Icebox fomenta la creatividad y el trabajo en equipo, ya que los jugadores deben adaptarse a un entorno cambiante y aprovechar al máximo sus habilidades y recursos.';
 
 { Bind }
 mapas[3].name := 'Bind';
 mapas[3].localizacion := 'Marruecos';
 mapas[3].fecha_lanzamiento := '2 de junio de 2020';
-mapas[3].description := 'Bind es un mapa ubicado en Marruecos que presenta una mezcla de áreas interiores y exteriores. Su diseño simétrico ofrece oportunidades para flanquear al enemigo y controlar el flujo del juego. Los dos sitios de bomba presentan desafíos únicos para atacantes y defensores, y los pasillos estrechos y las esquinas ofrecen oportunidades para el combate cercano. Bind fomenta la comunicación y la coordinación entre los miembros del equipo, ya que los jugadores deben trabajar juntos para asegurar la victoria.'
+mapas[3].description := 'Bind es un mapa ubicado en Marruecos que presenta una mezcla de áreas interiores y exteriores. Su diseño simétrico ofrece oportunidades para flanquear al enemigo y controlar el flujo del juego. Los dos sitios de bomba presentan desafíos únicos para atacantes y defensores, y los pasillos estrechos y las esquinas ofrecen oportunidades para el combate cercano. Bind fomenta la comunicación y la coordinación entre los miembros del equipo, ya que los jugadores deben trabajar juntos para asegurar la victoria.';
 
 { Breeze }
 mapas[4].name := 'Breeze';
 mapas[4].localizacion := 'Bermudas';
 mapas[4].fecha_lanzamiento := '27 de abril de 2021';
-mapas[4].description := 'Breeze es un mapa tropical situado en las Bermudas. Su diseño expansivo y sus amplias áreas abiertas ofrecen oportunidades para el combate a larga distancia y estrategias de flanqueo. Los tres sitios de bomba presentan desafíos únicos para atacantes y defensores, y las áreas interiores ofrecen oportunidades para el combate cercano. Breeze es un mapa dinámico que fomenta la exploración y la adaptabilidad, ya que los jugadores deben estar preparados para enfrentarse a diferentes situaciones en cada ronda.'
+mapas[4].description := 'Breeze es un mapa tropical situado en las Bermudas. Su diseño expansivo y sus amplias áreas abiertas ofrecen oportunidades para el combate a larga distancia y estrategias de flanqueo. Los tres sitios de bomba presentan desafíos únicos para atacantes y defensores, y las áreas interiores ofrecen oportunidades para el combate cercano. Breeze es un mapa dinámico que fomenta la exploración y la adaptabilidad, ya que los jugadores deben estar preparados para enfrentarse a diferentes situaciones en cada ronda.';
 
 { Ascent }
 mapas[5].name := 'Ascent';
 mapas[5].localizacion := 'Venecia, Italia';
 mapas[5].fecha_lanzamiento := '2 de junio de 2020';
-mapas[5].description := 'Ascent es un mapa ubicado en la ciudad de Venecia, Italia. Su diseño simétrico y sus amplias áreas abiertas ofrecen oportunidades para el combate a larga distancia y estrategias de flanqueo. Los dos sitios de bomba presentan desafíos únicos para atacantes y defensores, y las áreas interiores ofrecen oportunidades para el combate cercano. Ascent es un mapa dinámico que fomenta la comunicación y la coordinación entre los miembros del equipo, ya que los jugadores deben trabajar juntos para asegurar la victoria.'
+mapas[5].description := 'Ascent es un mapa ubicado en la ciudad de Venecia, Italia. Su diseño simétrico y sus amplias áreas abiertas ofrecen oportunidades para el combate a larga distancia y estrategias de flanqueo. Los dos sitios de bomba presentan desafíos únicos para atacantes y defensores, y las áreas interiores ofrecen oportunidades para el combate cercano. Ascent es un mapa dinámico que fomenta la comunicación y la coordinación entre los miembros del equipo, ya que los jugadores deben trabajar juntos para asegurar la victoria.';
 
 { Fracture }
 mapas[6].name := 'Fracture';
 mapas[6].localizacion := 'Desconocida';
 mapas[6].fecha_lanzamiento := '14 de octubre de 2021';
-mapas[6].description := 'Fracture es un mapa futurista con un diseño asimétrico. Presenta una división central que separa el mapa en dos partes distintas, lo que ofrece oportunidades para flanquear al enemigo y controlar el flujo del juego. Los dos sitios de bomba presentan desafíos únicos para atacantes y defensores, y los pasajes estrechos y las áreas abiertas ofrecen una variedad de opciones tácticas. Fracture es un mapa dinámico que fomenta la creatividad y el trabajo en equipo, ya que los jugadores deben adaptarse a un entorno cambiante y aprovechar al máximo sus habilidades y recursos.'
-}
-  }
+mapas[6].description := 'Fracture es un mapa futurista con un diseño asimétrico. Presenta una división central que separa el mapa en dos partes distintas, lo que ofrece oportunidades para flanquear al enemigo y controlar el flujo del juego. Los dos sitios de bomba presentan desafíos únicos para atacantes y defensores, y los pasajes estrechos y las áreas abiertas ofrecen una variedad de opciones tácticas. Fracture es un mapa dinámico que fomenta la creatividad y el trabajo en equipo, ya que los jugadores deben adaptarse a un entorno cambiante y aprovechar al máximo sus habilidades y recursos.';
+
 end;
 
 end.

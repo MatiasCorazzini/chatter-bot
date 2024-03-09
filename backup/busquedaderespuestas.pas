@@ -40,6 +40,11 @@ implementation
     if ContienePalabra(input, 'CUANTOS') then key:='CUANTOS';
     if ContienePalabra(input, 'CUANTO') then key:='CUANTOS';
     if ContienePalabra(input, 'CANTIDAD') then key:='CUANTOS';
+    if ContienePalabra(input, 'HABILIDAD') then key:='HABILIDAD';
+    if ContienePalabra(input, 'HABILIDADES') then key:='HABILIDAD';
+    if ContienePalabra(input, 'CLASE') then key:='CLASE';
+    if ContienePalabra(input, 'CLASES') then key:='CLASE';
+
 
     for i:=0 to TamArchivo(arch)-1 do
     begin
@@ -95,7 +100,7 @@ implementation
          words := SplitString(X.pregunta, ',');
          for i:=Low(words) to High(words) do
          begin
-           writeln(words[i]);
+           //writeln(words[i]);
            if ContienePalabra(input, words[i]) then
            begin
                ContienePregunta:= True;

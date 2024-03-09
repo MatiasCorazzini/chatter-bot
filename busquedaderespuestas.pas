@@ -40,6 +40,15 @@ implementation
     if ContienePalabra(input, 'CUANTOS') then key:='CUANTOS';
     if ContienePalabra(input, 'CUANTO') then key:='CUANTOS';
     if ContienePalabra(input, 'CANTIDAD') then key:='CUANTOS';
+    if ContienePalabra(input, 'HABILIDAD') then key:='HABILIDAD';
+    if ContienePalabra(input, 'HABILIDADES') then key:='HABILIDAD';
+    if ContienePalabra(input, 'CLASE') then key:='CLASE';
+    if ContienePalabra(input, 'CLASES') then key:='CLASE';
+    if ContienePalabra(input, 'SABER') then key:='DESCRIPCION';
+    if ContienePalabra(input, 'DESCRIPCION') then key:='DESCRIPCION';
+    if ContienePalabra(input, 'INFO') then key:='DESCRIPCION';
+    if ContienePalabra(input, 'INFORMACION') then key:='DESCRIPCION';
+
 
     for i:=0 to TamArchivo(arch)-1 do
     begin

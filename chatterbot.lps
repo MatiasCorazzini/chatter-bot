@@ -8,19 +8,19 @@
       <Unit>
         <Filename Value="chatterbot.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <CursorPos X="5" Y="15"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="archivo.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Archivo"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="116"/>
-        <CursorPos X="59" Y="129"/>
-        <UsageCount Value="32"/>
+        <TopLine Value="182"/>
+        <CursorPos X="45" Y="192"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -28,7 +28,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Arbol"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="37"/>
       </Unit>
       <Unit>
         <Filename Value="funciones.pas"/>
@@ -36,7 +36,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="39"/>
         <CursorPos Y="64"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -44,9 +44,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="initValorantData"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="67"/>
-        <CursorPos Y="99"/>
-        <UsageCount Value="32"/>
+        <TopLine Value="601"/>
+        <CursorPos Y="142"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -54,16 +54,16 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ArbolDeBusquedas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="37"/>
       </Unit>
       <Unit>
         <Filename Value="busquedaderespuestas.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BusquedaDeRespuestas"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="70"/>
-        <CursorPos X="14" Y="98"/>
-        <UsageCount Value="32"/>
+        <TopLine Value="35"/>
+        <CursorPos X="26" Y="30"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -72,38 +72,10 @@
         <UnitName Value="Lista_Conductores"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="29" Y="91"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="37"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="archivo.pas"/>
-        <Caret Line="15" Column="26"/>
-      </Position>
-      <Position>
-        <Filename Value="archivo.pas"/>
-        <Caret Line="103" Column="12" TopLine="83"/>
-      </Position>
-      <Position>
-        <Filename Value="archivo.pas"/>
-        <Caret Line="85" Column="7" TopLine="66"/>
-      </Position>
-      <Position>
-        <Filename Value="archivo.pas"/>
-        <Caret Line="102" TopLine="82"/>
-      </Position>
-      <Position>
-        <Filename Value="busquedaderespuestas.pas"/>
-        <Caret Line="64" Column="22" TopLine="49"/>
-      </Position>
-      <Position>
-        <Filename Value="busquedaderespuestas.pas"/>
-        <Caret Line="91" Column="35" TopLine="55"/>
-      </Position>
-      <Position>
-        <Filename Value="archivo.pas"/>
-        <Caret Line="699" Column="5" TopLine="111"/>
-      </Position>
       <Position>
         <Filename Value="chatterbot.lpr"/>
         <Caret Line="15" Column="3"/>
@@ -139,10 +111,6 @@
       <Position>
         <Filename Value="busquedaderespuestas.pas"/>
         <Caret Line="78" Column="9" TopLine="44"/>
-      </Position>
-      <Position>
-        <Filename Value="busquedaderespuestas.pas"/>
-        <Caret Line="20" Column="57" TopLine="36"/>
       </Position>
       <Position>
         <Filename Value="busquedaderespuestas.pas"/>
@@ -185,16 +153,48 @@
         <Caret Line="79" Column="30" TopLine="50"/>
       </Position>
       <Position>
-        <Filename Value="busquedaderespuestas.pas"/>
-        <Caret Column="27" TopLine="32"/>
-      </Position>
-      <Position>
-        <Filename Value="archivo.pas"/>
-        <Caret Line="34" Column="12" TopLine="132"/>
-      </Position>
-      <Position>
         <Filename Value="archivo.pas"/>
         <Caret Line="154" Column="40" TopLine="144"/>
+      </Position>
+      <Position>
+        <Filename Value="archivo.pas"/>
+        <Caret Line="268" TopLine="273"/>
+      </Position>
+      <Position>
+        <Filename Value="archivo.pas"/>
+        <Caret Line="118" Column="8" TopLine="95"/>
+      </Position>
+      <Position>
+        <Filename Value="archivo.pas"/>
+        <Caret Line="363" TopLine="234"/>
+      </Position>
+      <Position>
+        <Filename Value="archivo.pas"/>
+        <Caret Line="348" Column="77" TopLine="315"/>
+      </Position>
+      <Position>
+        <Filename Value="archivo.pas"/>
+        <Caret Line="201" Column="15" TopLine="184"/>
+      </Position>
+      <Position>
+        <Filename Value="archivo.pas"/>
+        <Caret Line="366" Column="3" TopLine="325"/>
+      </Position>
+      <Position>
+        <Filename Value="chatterbot.lpr"/>
+        <Caret Line="15" Column="3"/>
+      </Position>
+      <Position>
+        <Filename Value="archivo.pas"/>
+        <Caret Line="98" Column="23" TopLine="77"/>
+      </Position>
+      <Position>
+        <Filename Value="chatterbot.lpr"/>
+        <Caret Line="15" Column="3"/>
+      </Position>
+      <Position>
+        <Filename Value="archivo.pas"/>
+        <Caret Line="247" Column="42" TopLine="443"/>
       </Position>
     </JumpHistory>
     <RunParams>
